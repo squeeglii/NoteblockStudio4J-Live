@@ -74,6 +74,8 @@ public class NBSVersion4Reader {
     }
 
     protected NBSVersion4File readBody(NBSVersion4Header header, ByteBuffer buffer) {
+        ArrayList<NBSVersion4Tick> ticks = readNotes(header.getLayers(), buffer);
+        return new NBSVersion4File(header, ticks);
     }
 
     protected ArrayList<NBSVersion4Tick> readNotes(int layers, ByteBuffer buffer) {
