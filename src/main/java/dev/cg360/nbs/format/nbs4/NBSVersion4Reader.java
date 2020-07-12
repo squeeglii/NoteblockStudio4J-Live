@@ -33,12 +33,12 @@ public class NBSVersion4Reader {
         return file;
     }
 
-    protected NBSVersion4Header readHeader(ByteBuffer buffer){
+    protected NBSVersion4Header readHeader(ByteBuffer buffer) {
         NBSVersion4Header header = initialVersionChecks(buffer);
         return readHeaderPostCheck(buffer, header);
     }
 
-    protected NBSVersion4Header initialVersionChecks(ByteBuffer buffer){
+    protected NBSVersion4Header initialVersionChecks(ByteBuffer buffer) {
         NBSVersion4Header header = new NBSVersion4Header();
 
         if(buffer.getShort() != 0) throw new InvalidNBSHeaderException("The specified file does not follow an modern *.NBS format.");
@@ -49,7 +49,7 @@ public class NBSVersion4Reader {
         return header;
     }
 
-    protected NBSVersion4Header readHeaderPostCheck(ByteBuffer buffer, NBSVersion4Header checkedHeader){
+    protected NBSVersion4Header readHeaderPostCheck(ByteBuffer buffer, NBSVersion4Header checkedHeader) {
         checkedHeader.setVanillaInstrumentCount(buffer.get());
         checkedHeader.setSongLength(readUnsignedShort(buffer));
         checkedHeader.setLayers(readUnsignedShort(buffer));
@@ -75,7 +75,9 @@ public class NBSVersion4Reader {
 
     protected NBSVersion4File readBody(NBSVersion4Header header, ByteBuffer buffer) {
         ArrayList<NBSVersion4Tick> ticks = readNotes(header.getLayers(), buffer);
-        return new NBSVersion4File(header, ticks);
+        NBSVersion4LayerData[] layers = readDetailedLayerDataEntries(header.getLayers(), buffer);
+
+        return new NBSVersion4File(header, ticks.toArray(new NBSVersion4Tick[0]), layers);
     }
 
     protected ArrayList<NBSVersion4Tick> readNotes(int layers, ByteBuffer buffer) {
@@ -106,13 +108,29 @@ public class NBSVersion4Reader {
         return notes;
     }
 
-    protected NBSVersion4Note readNote(ByteBuffer buffer){
+    protected NBSVersion4Note readNote(ByteBuffer buffer) {
         byte instrument = buffer.get();
         byte key = buffer.get();
         byte volume = buffer.get();
         byte panning = buffer.get();
         short finepitch = buffer.getShort();
         return new NBSVersion4Note(instrument, key, volume, panning, finepitch);
+    }
+
+    protected NBSVersion4LayerData[] readDetailedLayerDataEntries(int layers, ByteBuffer buffer) {
+        NBSVersion4LayerData[] data = new NBSVersion4LayerData[layers];
+        for(int i = 0; i < layers; i++){
+            data[i] = readDetailedLayerData(buffer);
+        }
+        return data;
+    }
+
+    protected NBSVersion4LayerData readDetailedLayerData(ByteBuffer buffer) {
+        String name = readNBSString(buffer);
+        byte lock = buffer.get();
+        byte volume = buffer.get();
+        byte panning = buffer.get();
+        return new NBSVersion4LayerData(name, lock, volume, panning);
     }
 
     // What has Java got against unsigned types TwT
