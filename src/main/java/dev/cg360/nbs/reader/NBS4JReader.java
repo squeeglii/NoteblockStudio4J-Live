@@ -51,27 +51,49 @@ public class NBS4JReader {
         if(!Arrays.asList(SUPPORTED_VERSIONS).contains(version)) throw new InvalidHeaderException(String.format("The specified file (Version %s) does not use a supported NBS version.", version));
         header.setVersion(version);
         header.setVanillaInstrumentCount(buffer.get());
-        header.setSongLength(buffer.getShort());
-        header.setLayers(buffer.getShort());
+        header.setSongLength(readUnsignedShort(buffer));
+        header.setLayers(readUnsignedShort(buffer));
         header.setTitle(readNBSString(buffer));
         header.setAuthor(readNBSString(buffer));
         header.setOriginalAuthor(readNBSString(buffer));
         header.setDescription(readNBSString(buffer));
-        header.setTempo(buffer.getShort());
-        Short short1 = 1;
+        header.setTempo(readUnsignedShort(buffer));
         header.setAutosave(buffer.get());
         header.setAutosaveDuration(buffer.get());
         header.setTimeSignature(buffer.get());
-        header.setMinutesSpent(buffer.getInt());
-        header.setLeftClicks(buffer.getInt());
-        header.setRightClicks(buffer.getInt());
-        header.setNotesAdded(buffer.getInt());
-        header.setNotesRemoved(buffer.getInt());
+        header.setMinutesSpent(readUnsignedInt(buffer));
+        header.setLeftClicks(readUnsignedInt(buffer));
+        header.setRightClicks(readUnsignedInt(buffer));
+        header.setNotesAdded(readUnsignedInt(buffer));
+        header.setNotesRemoved(readUnsignedInt(buffer));
         header.setMidiSchemName(readNBSString(buffer));
         header.setLoopEnabled(buffer.get());
         header.setMaxLoops(buffer.get());
-        header.setLoopStartTick(buffer.getShort());
+        header.setLoopStartTick(readUnsignedShort(buffer));
         return header;
+    }
+
+    // What has Java got against unsigned types TwT
+    private int readUnsignedShort(ByteBuffer buffer){
+        byte[] bytes = new byte[2];
+        buffer.get(bytes);
+        int integer = 0;
+        for(int i = 0; i < 2; i++){
+            byte b = bytes[i];
+            integer += ((b & 0xffff) << i);
+        }
+        return integer;
+    }
+
+    private long readUnsignedInt(ByteBuffer buffer){
+        byte[] bytes = new byte[4];
+        buffer.get(bytes);
+        long longVal = 0;
+        for(int i = 0; i < 4; i++){
+            byte b = bytes[i];
+            longVal += ((b & 0xff) << i);
+        }
+        return longVal;
     }
 
     private String readNBSString(ByteBuffer buffer){

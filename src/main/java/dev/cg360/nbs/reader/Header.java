@@ -4,25 +4,25 @@ public class Header {
 
     private byte version;
     private byte vanillaInstrumentCount;
-    private short songLength;
-    private short layers;
+    private int songLength;
+    private int layers;
     private String title;
     private String author;
     private String originalAuthor;
     private String description;
-    private short tempo; //Divided by 100.
+    private int tempo; //Divided by 100.
     private byte autosave;
     private byte autosaveDuration;
     private byte timeSignature;
-    private int minutesSpent;
-    private int leftClicks;
-    private int rightClicks;
-    private int notesAdded;
-    private int notesRemoved;
+    private long minutesSpent;
+    private long leftClicks;
+    private long rightClicks;
+    private long notesAdded;
+    private long notesRemoved;
     private String midiSchemName;
     private byte loopEnabled;
     private byte maxLoops;
-    private short loopStartTick;
+    private int loopStartTick;
 
     protected Header() { }
 
@@ -56,45 +56,45 @@ public class Header {
 
     public byte getVersion() { return version; }
     public byte getVanillaInstrumentCount() { return vanillaInstrumentCount; }
-    public short getSongLength() { return songLength; }
-    public short getLayers() { return layers; }
+    public int getSongLength() { return songLength; }
+    public int getLayers() { return layers; }
     public String getTitle() { return title; }
     public String getAuthor() { return author; }
     public String getOriginalAuthor() { return originalAuthor; }
     public String getDescription() { return description; }
-    public short getTempo() { return tempo; }
+    public int getTempo() { return tempo; }
     public byte getAutosave() { return autosave; }
     public byte getAutosaveDuration() { return autosaveDuration; }
     public byte getTimeSignature() { return timeSignature; }
-    public int getMinutesSpent() { return minutesSpent; }
-    public int getLeftClicks() { return leftClicks; }
-    public int getRightClicks() { return rightClicks; }
-    public int getNotesAdded() { return notesAdded; }
-    public int getNotesRemoved() { return notesRemoved; }
+    public long getMinutesSpent() { return minutesSpent; }
+    public long getLeftClicks() { return leftClicks; }
+    public long getRightClicks() { return rightClicks; }
+    public long getNotesAdded() { return notesAdded; }
+    public long getNotesRemoved() { return notesRemoved; }
     public String getMidiSchemName() { return midiSchemName; }
     public byte getLoopEnabled() { return loopEnabled; }
     public byte getMaxLoops() { return maxLoops; }
-    public short getLoopStartTick() { return loopStartTick; }
+    public int getLoopStartTick() { return loopStartTick; }
 
     protected void setVersion(byte version) { this.version = version; }
     protected void setVanillaInstrumentCount(byte vanillaInstrumentCount) { this.vanillaInstrumentCount = vanillaInstrumentCount; }
-    protected void setSongLength(short songLength) { this.songLength = songLength; }
-    protected void setLayers(short layers) { this.layers = layers; }
+    protected void setSongLength(int songLength) { this.songLength = songLength; }
+    protected void setLayers(int layers) { this.layers = layers; }
     protected void setTitle(String title) { this.title = title; }
     protected void setAuthor(String author) { this.author = author; }
     protected void setOriginalAuthor(String originalAuthor) { this.originalAuthor = originalAuthor; }
     protected void setDescription(String description) { this.description = description; }
-    protected void setTempo(short tempo) { this.tempo = tempo; }
+    protected void setTempo(int tempo) { this.tempo = tempo; }
     protected void setAutosave(byte autosave) { this.autosave = autosave; }
     protected void setAutosaveDuration(byte autosaveDuration) { this.autosaveDuration = autosaveDuration; }
     protected void setTimeSignature(byte timeSignature) { this.timeSignature = timeSignature; }
-    protected void setMinutesSpent(int minutesSpent) { this.minutesSpent = minutesSpent; }
-    protected void setLeftClicks(int leftClicks) { this.leftClicks = leftClicks; }
-    protected void setRightClicks(int rightClicks) { this.rightClicks = rightClicks; }
-    protected void setNotesAdded(int notesAdded) { this.notesAdded = notesAdded; }
-    protected void setNotesRemoved(int notesRemoved) { this.notesRemoved = notesRemoved; }
+    protected void setMinutesSpent(long minutesSpent) { this.minutesSpent = minutesSpent; }
+    protected void setLeftClicks(long leftClicks) { this.leftClicks = leftClicks; }
+    protected void setRightClicks(long rightClicks) { this.rightClicks = rightClicks; }
+    protected void setNotesAdded(long notesAdded) { this.notesAdded = notesAdded; }
+    protected void setNotesRemoved(long notesRemoved) { this.notesRemoved = notesRemoved; }
     protected void setMidiSchemName(String midiSchemName) { this.midiSchemName = midiSchemName; }
     protected void setLoopEnabled(byte loopEnabled) { this.loopEnabled = loopEnabled; }
     protected void setMaxLoops(byte maxLoops) { this.maxLoops = maxLoops; }
-    protected void setLoopStartTick(short loopStartTick) { this.loopStartTick = loopStartTick; }
+    protected void setLoopStartTick(int loopStartTick) { this.loopStartTick = loopStartTick; }
 }
