@@ -9,7 +9,7 @@ public class Main {
         if(args.length < 1) throw new IllegalArgumentException("Missing 1 file path argument.");
         try {
             NBSVersion4File file = NBSVersion4Reader.read(args[0]);
-            System.out.println(file.getHeader());
+            file.outputFileToLog();
         } catch (Exception err){
             err.printStackTrace();
         }

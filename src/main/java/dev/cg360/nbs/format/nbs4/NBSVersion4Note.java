@@ -22,4 +22,14 @@ public class NBSVersion4Note {
     public byte getPanning() { return panning; }
     public short getPitch() { return pitch; }
 
+    @Override
+    public String toString() {
+        return "NBSVersion4Note{" +
+                "instrument=" + instrument +
+                ", key=" + key +
+                ", volume=" + volume +
+                ", panning=" + panning +
+                ", pitch=" + pitch +
+                '}';
+    }
 }

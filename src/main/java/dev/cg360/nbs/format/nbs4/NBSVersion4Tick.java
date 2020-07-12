@@ -1,5 +1,7 @@
 package dev.cg360.nbs.format.nbs4;
 
+import java.util.Arrays;
+
 public class NBSVersion4Tick {
 
     protected int startingTick;
@@ -12,4 +14,9 @@ public class NBSVersion4Tick {
 
     public int getStartingTick() { return startingTick; }
     public NBSVersion4Note[] getLayers() { return layers; }
+
+    @Override
+    public String toString() {
+        return "{NBSVersion4Tick: Start="+startingTick+"; Notes="+ Arrays.toString(layers)+"}";
+    }
 }
