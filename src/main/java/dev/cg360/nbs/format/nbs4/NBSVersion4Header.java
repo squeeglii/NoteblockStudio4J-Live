@@ -1,34 +1,34 @@
-package dev.cg360.nbs.reader;
+package dev.cg360.nbs.format.nbs4;
 
-public class Header {
+public class NBSVersion4Header {
 
-    private byte version;
-    private byte vanillaInstrumentCount;
-    private int songLength;
-    private int layers;
-    private String title;
-    private String author;
-    private String originalAuthor;
-    private String description;
-    private int tempo; //Divided by 100.
-    private byte autosave;
-    private byte autosaveDuration;
-    private byte timeSignature;
-    private long minutesSpent;
-    private long leftClicks;
-    private long rightClicks;
-    private long notesAdded;
-    private long notesRemoved;
-    private String midiSchemName;
-    private byte loopEnabled;
-    private byte maxLoops;
-    private int loopStartTick;
+    protected byte version;
+    protected byte vanillaInstrumentCount;
+    protected int songLength;
+    protected int layers;
+    protected String title;
+    protected String author;
+    protected String originalAuthor;
+    protected String description;
+    protected int tempo; //Divided by 100.
+    protected byte autosave;
+    protected byte autosaveDuration;
+    protected byte timeSignature;
+    protected long minutesSpent;
+    protected long leftClicks;
+    protected long rightClicks;
+    protected long notesAdded;
+    protected long notesRemoved;
+    protected String midiSchemName;
+    protected byte loopEnabled;
+    protected byte maxLoops;
+    protected int loopStartTick;
 
-    protected Header() { }
+    protected NBSVersion4Header() { }
 
     @Override
     public String toString() {
-        return "Header" +
+        return "NBSVersion4Header" +
                 "\nversion=" + version +
                 ",\n vanillaInstrumentCount=" + vanillaInstrumentCount +
                 ",\n songLength=" + songLength +
