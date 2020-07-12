@@ -1,0 +1,20 @@
+plugins {
+    id 'java'
+}
+
+group 'dev.cg360.nbs'
+version '1.0-SNAPSHOT'
+
+jar {
+    manifest {
+        attributes 'Main-Class': 'dev.cg360.nbs.Main'
+    }
+}
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    testCompile group: 'junit', name: 'junit', version: '4.12'
+}
