@@ -5,6 +5,8 @@ import dev.cg360.nbs.exception.InvalidNBSHeaderException;
 import java.io.IOException;
 import java.nio.ByteBuffer;
 import java.nio.ByteOrder;
+import java.nio.CharBuffer;
+import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.ArrayList;
@@ -160,10 +162,12 @@ public class NBSVersion4Reader {
 
     protected static String readNBSString(ByteBuffer buffer){
         int length = (int) readUnsignedInt(buffer);
+        byte[] bytes = new byte[length];
+        buffer.get(bytes);
+        ByteBuffer byteBuffer = ByteBuffer.wrap(bytes);
+        CharBuffer charBuffer = StandardCharsets.UTF_8.decode(byteBuffer);
         char[] string = new char[length];
-        for(int i = 0; i < length; i++){
-            string[i] = buffer.getChar();
-        }
+        charBuffer.get(string);
         return String.valueOf(string);
     }
 
