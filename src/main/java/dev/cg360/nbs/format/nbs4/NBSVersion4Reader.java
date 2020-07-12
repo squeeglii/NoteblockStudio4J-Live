@@ -159,7 +159,7 @@ public class NBSVersion4Reader {
     }
 
     protected static String readNBSString(ByteBuffer buffer){
-        int length = buffer.getInt();
+        int length = (int) readUnsignedInt(buffer);
         char[] string = new char[length];
         for(int i = 0; i < length; i++){
             string[i] = buffer.getChar();
