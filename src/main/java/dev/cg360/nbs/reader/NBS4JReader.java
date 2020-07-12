@@ -77,21 +77,23 @@ public class NBS4JReader {
     private int readUnsignedShort(ByteBuffer buffer){
         byte[] bytes = new byte[2];
         buffer.get(bytes);
-        int integer = 0;
-        for(int i = 0; i < 2; i++){
+
+        int integerVal = 0;
+        for(int i = bytes.length - 1; i >= 0; i--){
             byte b = bytes[i];
-            integer += ((b & 0xffff) << i);
+            integerVal += Byte.toUnsignedInt(b) << (i*8);
         }
-        return integer;
+        return integerVal;
     }
 
     private long readUnsignedInt(ByteBuffer buffer){
         byte[] bytes = new byte[4];
         buffer.get(bytes);
+
         long longVal = 0;
-        for(int i = 0; i < 4; i++){
+        for(int i = bytes.length - 1; i >= 0; i--){
             byte b = bytes[i];
-            longVal += ((b & 0xff) << i);
+            longVal += Byte.toUnsignedInt(b) << (i*8);
         }
         return longVal;
     }
@@ -108,6 +110,10 @@ public class NBS4JReader {
     public Header getHeader(){
         if(!fileLoaded) throw new IllegalStateException("File is not loaded, thus, no header. What a shame.");
         return header;
+    }
+
+    private static byte flipByteBitOrder(byte flipByte){
+        return (byte) (Integer.reverse(flipByte) >>> (Integer.SIZE - Byte.SIZE));
     }
 
 }
