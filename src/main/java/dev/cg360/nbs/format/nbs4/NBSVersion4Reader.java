@@ -76,16 +76,16 @@ public class NBSVersion4Reader {
     protected NBSVersion4File readBody(NBSVersion4Header header, ByteBuffer buffer) {
     }
 
-    protected ArrayList<NBSVersion4Note[]>  readNotes(int layers, ByteBuffer buffer) {
+    protected ArrayList<NBSVersion4Tick> readNotes(int layers, ByteBuffer buffer) {
         int currentTick = -1;
-        ArrayList<NBSVersion4Note[]> ticks = new ArrayList<>();
+        ArrayList<NBSVersion4Tick> ticks = new ArrayList<>();
 
         while (true){
             int tickJumps = readUnsignedShort(buffer);
             if(tickJumps == 0){ break; }
             currentTick += tickJumps;
             NBSVersion4Note[] notes = readTickNoteLayers(layers, buffer);
-            ticks.add(notes);
+            ticks.add(new NBSVersion4Tick(currentTick, notes));
         }
         return ticks;
     }
