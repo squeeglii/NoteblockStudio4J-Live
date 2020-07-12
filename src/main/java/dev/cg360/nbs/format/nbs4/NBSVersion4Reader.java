@@ -73,13 +73,44 @@ public class NBSVersion4Reader {
         return checkedHeader;
     }
 
-    protected NBSVersion4File readBody(NBSVersion4Header header, ByteBuffer file) {
-
+    protected NBSVersion4File readBody(NBSVersion4Header header, ByteBuffer buffer) {
     }
 
-    protected NBSVersion4Tick[] readNotes(ByteBuffer file) {
-        int tick = -1;
-        int jumps = ;
+    protected ArrayList<NBSVersion4Note[]>  readNotes(int layers, ByteBuffer buffer) {
+        int currentTick = -1;
+        ArrayList<NBSVersion4Note[]> ticks = new ArrayList<>();
+
+        while (true){
+            int tickJumps = readUnsignedShort(buffer);
+            if(tickJumps == 0){ break; }
+            currentTick += tickJumps;
+            NBSVersion4Note[] notes = readTickNoteLayers(layers, buffer);
+            ticks.add(notes);
+        }
+        return ticks;
+    }
+
+    protected NBSVersion4Note[] readTickNoteLayers(int layers, ByteBuffer buffer) {
+        NBSVersion4Note[] notes = new NBSVersion4Note[layers];
+        int currentLayer = -1;
+        while (true){
+            int layerJumps = readUnsignedShort(buffer);
+            if(layerJumps == 0){ break; }
+            currentLayer += layerJumps;
+
+            NBSVersion4Note note = readNote(buffer);
+            notes[currentLayer] = note;
+        }
+        return notes;
+    }
+
+    protected NBSVersion4Note readNote(ByteBuffer buffer){
+        byte instrument = buffer.get();
+        byte key = buffer.get();
+        byte volume = buffer.get();
+        byte panning = buffer.get();
+        short finepitch = buffer.getShort();
+        return new NBSVersion4Note(instrument, key, volume, panning, finepitch);
     }
 
     // What has Java got against unsigned types TwT
