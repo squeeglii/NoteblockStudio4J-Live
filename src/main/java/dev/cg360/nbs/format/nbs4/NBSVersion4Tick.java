@@ -23,7 +23,7 @@ public class NBSVersion4Tick {
     public void printTick() {
         System.out.println("NOTE Tick="+startingTick);
         for(int i = 0; i < layers.length; i++){
-            System.out.println(String.format("||  %s: %s", i, layers[i].toString()));
+            System.out.println(String.format("||  %s: %s", i, layers[i] == null ? "null!" : layers[i].toString()));
         }
     }
 }
