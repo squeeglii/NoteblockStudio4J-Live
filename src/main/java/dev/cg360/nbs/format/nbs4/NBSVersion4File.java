@@ -16,7 +16,7 @@ public class NBSVersion4File {
 
     public void outputFileToLog(){
         System.out.println(header.toString());
-        for(NBSVersion4Tick tick: ticks) System.out.println(tick.toString());
-        for(NBSVersion4LayerData layer: layers) System.out.println(layer.toString());
+        for(NBSVersion4Tick tick: ticks) tick.printTick();
+        for(NBSVersion4LayerData layer: layers) System.out.println(layer);
     }
 }

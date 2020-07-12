@@ -19,4 +19,11 @@ public class NBSVersion4Tick {
     public String toString() {
         return "{NBSVersion4Tick: Start="+startingTick+"; Notes="+ Arrays.toString(layers)+"}";
     }
+
+    public void printTick() {
+        System.out.println("NOTE Tick="+startingTick);
+        for(int i = 0; i < layers.length; i++){
+            System.out.println(String.format("||  %s: %s", i, layers[i].toString()));
+        }
+    }
 }
