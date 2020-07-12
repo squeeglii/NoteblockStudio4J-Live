@@ -18,4 +18,14 @@ public class NBSVersion4LayerData {
     public byte getLock() { return lock; }
     public byte getVolume() { return volume; }
     public byte getPanning() { return panning; }
+
+    @Override
+    public String toString() {
+        return "NBSVersion4LayerData{" +
+                "name='" + name + '\'' +
+                ", lock=" + lock +
+                ", volume=" + volume +
+                ", panning=" + panning +
+                '}';
+    }
 }
