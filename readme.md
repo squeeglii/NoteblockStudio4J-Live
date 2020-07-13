@@ -16,11 +16,39 @@ should be available soonTM and perhaps a Sponge version too.
     <tr>
         <td><b>Noteblock Studio Version</b></td>
         <td><b>Format Version</b></td>
-        <td><b>Suppot?</b></td>
+        <td><b>Support?</b></td>
     </tr>
     <tr>
-        <td>3.80</td>
-        <td>4</td>
+        <td>3.8.x</td>
+        <td rowspan="2">4</td>
         <td>✔</td>
+    </tr>
+    <tr>
+        <td>3.7.x</td>
+        <td>✔</td>
+    </tr>
+    <tr>
+        <td>3.6.x</td>
+        <td>3</td>
+        <td>❌</td>
+    </tr>
+    <tr>
+        <td>3.5.x</td>
+        <td>2</td>
+        <td>❌</td>
+    </tr>
+    <tr>
+        <td>3.4.x</td>
+        <td rowspan="2">1</td>
+        <td>❌</td>
+    </tr>
+    <tr>
+        <td>3.3.5 and Above.</td>
+        <td>❌</td>
+    </tr>
+    <tr>
+        <td>3.3.4 and Below.</td>
+        <td>Classic</td>
+        <td>❌</td>
     </tr>
 </table>
