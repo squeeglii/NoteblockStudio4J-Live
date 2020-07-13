@@ -9,3 +9,18 @@ and plugins to interpret its file format and to make the developer's job easier!
 Furthermore, the extra NSB4J **Live** component is designed to provide a simple yet powerful api for
 playing songs, no matter which platform it's aimed for, with a few simple tweaks. A Bukkit/Spigot version
 should be available soonTM and perhaps a Sponge version too.
+
+### Version Support:
+
+<table>
+    <tr>
+        <td><b>Noteblock Studio Version</b></td>
+        <td><b>Format Version</b></td>
+        <td><b>Suppot?</b></td>
+    </tr>
+    <tr>
+        <td>3.80</td>
+        <td>4</td>
+        <td>✔</td>
+    </tr>
+</table>
