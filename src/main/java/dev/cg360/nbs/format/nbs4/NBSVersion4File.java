@@ -16,6 +16,11 @@ public class NBSVersion4File {
         this.customInstruments = customInstruments;
     }
 
+    public NBSVersion4Header getHeader() { return header; }
+    public NBSVersion4Tick[] getTicks() { return ticks; }
+    public NBSVersion4LayerData[] getLayers() { return layers; }
+    public NBSVersion4Instrument[] getCustomInstruments() { return customInstruments; }
+
     public void outputFileToLog(){
         System.out.println(header.toString());
         for(NBSVersion4Tick tick: ticks) tick.printTick();
