@@ -76,10 +76,11 @@ public class NBSVersion4Reader {
     }
 
     protected NBSVersion4File readBody(NBSVersion4Header header, ByteBuffer buffer) {
-        ArrayList<NBSVersion4Tick> ticks = readNotes(header.getLayers(), buffer);
+        NBSVersion4Tick[] ticks = readNotes(header.getLayers(), buffer).toArray(new NBSVersion4Tick[0]);
         NBSVersion4LayerData[] layers = readDetailedLayerDataEntries(header.getLayers(), buffer);
+        NBSVersion4Instrument[] customInstruments = readInstrumentDataEntries(buffer);
 
-        return new NBSVersion4File(header, ticks.toArray(new NBSVersion4Tick[0]), layers);
+        return new NBSVersion4File(header, ticks, layers, customInstruments);
     }
 
     protected ArrayList<NBSVersion4Tick> readNotes(int layers, ByteBuffer buffer) {
@@ -133,6 +134,23 @@ public class NBSVersion4Reader {
         byte volume = buffer.get();
         byte panning = buffer.get();
         return new NBSVersion4LayerData(name, lock, volume, panning);
+    }
+
+    protected NBSVersion4Instrument[] readInstrumentDataEntries(ByteBuffer buffer) {
+        byte instrumentCount = buffer.get();
+        NBSVersion4Instrument[] data = new NBSVersion4Instrument[instrumentCount];
+        for(int i = 0; i < data.length; i++){
+            data[i] = readInstrumentData(buffer);
+        }
+        return data;
+    }
+
+    protected NBSVersion4Instrument readInstrumentData(ByteBuffer buffer) {
+        String name = readNBSString(buffer);
+        String sound = readNBSString(buffer);
+        byte key = buffer.get();
+        byte showKeyPress = buffer.get();
+        return new NBSVersion4Instrument(name, sound, key, showKeyPress);
     }
 
     // What has Java got against unsigned types TwT

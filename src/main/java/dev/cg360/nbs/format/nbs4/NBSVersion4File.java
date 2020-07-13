@@ -7,11 +7,13 @@ public class NBSVersion4File {
     protected NBSVersion4Header header;
     protected NBSVersion4Tick[] ticks;
     protected NBSVersion4LayerData[] layers;
+    protected NBSVersion4Instrument[] customInstruments;
 
-    public NBSVersion4File(NBSVersion4Header header, NBSVersion4Tick[] ticks, NBSVersion4LayerData[] layers) {
+    public NBSVersion4File(NBSVersion4Header header, NBSVersion4Tick[] ticks, NBSVersion4LayerData[] layers, NBSVersion4Instrument[] customInstruments) {
         this.header = header;
         this.ticks = ticks;
         this.layers = layers;
+        this.customInstruments = customInstruments;
     }
 
     public void outputFileToLog(){
