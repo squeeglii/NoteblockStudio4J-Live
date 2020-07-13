@@ -25,5 +25,6 @@ public class NBSVersion4File {
         System.out.println(header.toString());
         for(NBSVersion4Tick tick: ticks) tick.printTick();
         for(NBSVersion4LayerData layer: layers) System.out.println(layer.toString());
+        for(NBSVersion4Instrument instrument: customInstruments) System.out.println(instrument.toString());
     }
 }

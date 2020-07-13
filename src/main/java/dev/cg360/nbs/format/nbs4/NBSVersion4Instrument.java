@@ -14,6 +14,16 @@ public class NBSVersion4Instrument {
         this.showKeyPress = showKeyPress;
     }
 
+    @Override
+    public String toString() {
+        return "NBSVersion4Instrument{" +
+                "name='" + name + '\'' +
+                ", sound='" + sound + '\'' +
+                ", key=" + key +
+                ", showKeyPress=" + showKeyPress +
+                '}';
+    }
+
     public String getName() { return name; }
     public String getSound() { return sound; }
     public byte getKey() { return key; }
